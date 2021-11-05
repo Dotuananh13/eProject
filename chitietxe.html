@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chi tiết sản phẩm</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+	<style>
+		.gachbo {
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+<body class="bg-dark">
+	<div class="container bg-white py-4 px-3">
+		<h2>PRODUCT DESCRIPTION</h2>
+		<div>
+			<div class="row" id="divDetails">
+				<div class="col-6">
+					<img src="images/xe-1.png">
+				</div>
+				<div class="col-6">
+					<h2 class="fw-bold">BIKE NAME</h2>
+					<h3 class="text-primary">$99999</h3>
+					<h3 class="text-secondary gachbo">$99999</h3>
+					<button class="btn btn-success btn-lg px-5 text-uppercase fw-bold">
+						Buy
+					</button>
+					<p>Product description product description product description product description product description product description product description product description product description product description</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+	<script src="data.js"></script>
+	<script>
+		var url_string = window.location.href;
+		var url = new URL (url_string);
+		var id = url.searchParams.get("id")
+		id = Number (id);
+
+		xe = JSON.parse(xe);
+
+		var htmlString = "" ;
+
+		var bike = xe[id-1];
+
+			htmlString += 
+			`<div class="col-6">
+					<img src="images/${bike.imageName}.png">
+				</div>
+				<div class="col-6">
+					<h2 class="fw-bold">${bike.name}</h2>
+					<h3 class="text-primary">$${bike.price}</h3>
+					<h3 class="text-secondary gachbo">$${bike.price * 0.6}</h3>
+					<button class="btn btn-success btn-lg px-5 text-uppercase fw-bold">
+						Buy
+					</button>
+					<p>${bike.description}</p>
+				</div>`;
+		$("#divDetails").html(htmlString);
+	</script>
+</body>
+</html>
